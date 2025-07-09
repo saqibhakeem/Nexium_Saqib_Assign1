@@ -1,7 +1,20 @@
-import QuoteForm from './components/QuoteForm';
+"use client";
+
+import QuoteForm from "@/app/components/QuoteForm";
+import TopicDrawer from "@/app/components/TopicDrawer";
+import { useState } from "react";
 
 export default function Home() {
+  const [selectedTopic,setSelectedTopic] = useState("");
+
   return (
-      <QuoteForm />
+    <>
+        
+
+      <main>
+        <TopicDrawer onSelect={(topic) => setSelectedTopic(topic)} />
+        <QuoteForm initialTopic={selectedTopic} />
+      </main>
+    </>
   );
 }

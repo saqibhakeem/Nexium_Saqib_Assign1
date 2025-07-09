@@ -8,15 +8,52 @@ import { AnimatePresence, motion } from "framer-motion";
 import Lottie from "lottie-react";
 import loadingAnimation from "@/lottie/loading.json";
 import { Quote } from "lucide-react";
+import { useEffect } from "react";
 
-export default function QuoteForm() {
-  const [topic, setTopic] = useState("");
+export default function QuoteForm({
+  initialTopic = "",
+}: {
+  initialTopic?: string;
+}) {
+  const [topic, setTopic] = useState(initialTopic);
   const [results, setResults] = useState<{ text: string; author?: string }[]>([]);
   const [hasSearched, setHasSearched] = useState(false);
   const [loading, setLoading] = useState(false);
   const [filteredQuotes, setFilteredQuotes] = useState<
   { text: string; author?: string }[]
 >([]);
+
+useEffect(() => {
+    if (
+      initialTopic &&
+      initialTopic.toLowerCase() !== topic.toLowerCase()
+    ) {
+      setTopic(initialTopic);
+      setHasSearched(true);
+      setLoading(true);
+
+      const filtered = quotes.filter(
+        (q) => q.topic.toLowerCase() === initialTopic.toLowerCase()
+      );
+      setFilteredQuotes(filtered);
+
+      const seen = new Set<string>();
+      const uniqueQuotes: { text: string; author?: string }[] = [];
+
+      while (uniqueQuotes.length < 3 && filtered.length > 0) {
+        const random = filtered[Math.floor(Math.random() * filtered.length)];
+        if (!seen.has(random.text)) {
+          seen.add(random.text);
+          uniqueQuotes.push({ text: random.text, author: random.author });
+        }
+      }
+
+      setResults(uniqueQuotes);
+      setLoading(false);
+    }
+  }, [initialTopic]);
+
+
 
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -27,7 +64,7 @@ export default function QuoteForm() {
     await new Promise((resolve) => setTimeout(resolve, 500));
 
     const filtered = quotes.filter(
-  (q) => q.topic.toLowerCase() === topic.toLowerCase().split(" ")[0]
+  (q) => q.topic.toLowerCase() === topic.toLowerCase()
 );
 setFilteredQuotes(filtered);
 
@@ -66,8 +103,8 @@ setResults(uniqueQuotes);
 
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-teal-200 to-white flex flex-col items-center justify-start px-4 py-8 md:px-8">
-      <h1 className="text-2xl md:text-3xl font-bold text-center text-teal-600 mb-6">
+    <div className="min-h-screen bg-gradient-to-br from-teal-400 to-white flex flex-col items-center justify-start px-4 py-8 md:px-8">
+      <h1 className="text-2xl md:text-3xl font-bold text-center text-teal-800 mb-6">
         Quote Generator
       </h1>
 
