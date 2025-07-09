@@ -66,8 +66,8 @@ setResults(uniqueQuotes);
 
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-100 to-white flex flex-col items-center justify-start px-4 py-8 md:px-8">
-      <h1 className="text-2xl md:text-3xl font-bold text-center text-blue-700 mb-6">
+    <div className="min-h-screen bg-gradient-to-br from-teal-200 to-white flex flex-col items-center justify-start px-4 py-8 md:px-8">
+      <h1 className="text-2xl md:text-3xl font-bold text-center text-teal-600 mb-6">
         Quote Generator
       </h1>
 
@@ -85,11 +85,12 @@ setResults(uniqueQuotes);
             setHasSearched(false);
             setLoading(false);
           }}
-          className="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          className="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-teal-600"
         />
         <Button
           type="submit"
-          className="w-full md:w-auto px-4 py-2 text-sm md:text-base"
+          className="w-full md:w-auto px-4 py-2 text-sm md:text-base "
+          variant="default"
         >
           Get Quotes
         </Button>
@@ -134,7 +135,7 @@ setResults(uniqueQuotes);
                 >
                   <Card className="transition-all duration-300 hover:scale-105 hover:shadow-xl bg-white/80">
                     <CardContent className="p-4">
-                      <Quote className="text-blue-500 w-6 h-6 mb-2" />
+                      <Quote className="text-teal-600 w-6 h-6 mb-2" />
                       <p className="text-sm italic">“{quote.text}”</p>
                       {quote.author && (
                         <p className="text-xs text-right text-gray-500 mt-2">
