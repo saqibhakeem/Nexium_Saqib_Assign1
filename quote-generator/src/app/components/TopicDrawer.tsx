@@ -28,8 +28,7 @@ export default function TopicDrawer({ onSelect }: TopicDrawerProps) {
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
         <Button
-  variant="default"
-  className="fixed bottom-6 right-6 z-50 shadow-md  text-white"
+  variant="default" className="mt-4"
 >📚 Browse Topics</Button>
       </SheetTrigger>
       <SheetContent side="left" className="w-[300px] sm:w-[400px]">

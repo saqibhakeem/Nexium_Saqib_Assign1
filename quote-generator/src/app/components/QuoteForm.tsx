@@ -9,6 +9,7 @@ import Lottie from "lottie-react";
 import loadingAnimation from "@/lottie/loading.json";
 import { Quote } from "lucide-react";
 import { useEffect } from "react";
+import TopicDrawer from "./TopicDrawer";
 
 export default function QuoteForm({
   initialTopic = "",
@@ -133,14 +134,18 @@ setResults(uniqueQuotes);
         </Button>
       </form>
 
-      <div className="mt-6 w-full max-w-6xl">
+         <div className="mt-2">
+    <TopicDrawer onSelect={setTopic} />
+  </div>
+
+      <div className="mt-4 w-full max-w-6xl">
         {loading && (
           <motion.div
             key="loader"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="flex justify-center mt-6"
+            className="flex justify-center mt-2"
           >
             <Lottie animationData={loadingAnimation} loop className="w-24 h-24" />
           </motion.div>
