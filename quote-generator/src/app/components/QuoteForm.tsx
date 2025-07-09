@@ -27,7 +27,7 @@ export default function QuoteForm() {
     await new Promise((resolve) => setTimeout(resolve, 500));
 
     const filtered = quotes.filter(
-  (q) => q.topic.toLowerCase() === topic.toLowerCase()
+  (q) => q.topic.toLowerCase() === topic.toLowerCase().split(" ")[0]
 );
 setFilteredQuotes(filtered);
 
